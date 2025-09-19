@@ -4,3 +4,7 @@ ktor:
       - com.emeka.ApplicationKt.module
   deployment:
     port: 8080
+
+tigerbeetle:
+  cluster-id: 0
+  port: 3000

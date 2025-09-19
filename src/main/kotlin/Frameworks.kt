@@ -1,26 +1,37 @@
 package com.emeka
 
-import com.fasterxml.jackson.databind.*
-import io.ktor.http.*
-import io.ktor.serialization.jackson.*
+import com.emeka.service.AccountingService
+import com.emeka.service.FeeService
+import com.tigerbeetle.Client
+import com.tigerbeetle.UInt128
 import io.ktor.server.application.*
-import io.ktor.server.plugins.contentnegotiation.*
-import io.ktor.server.plugins.cors.routing.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
 import org.koin.dsl.module
 import org.koin.ktor.plugin.Koin
 import org.koin.logger.slf4jLogger
 
 fun Application.configureFrameworks() {
+
+    val tigerBeetleClusterId =
+        environment.config.property("tigerbeetle.cluster-id").getString().toLong()
+    val tigerBeetleReplicaAddressPort =
+        environment.config.property("tigerbeetle.port").getString()
+
     install(Koin) {
         slf4jLogger()
-        modules(module {
-            single<HelloService> {
-                HelloService {
-                    println(environment.log.info("Hello, World!"))
-                }
-            }
-        })
+        modules(serviceModule(tigerBeetleClusterId, tigerBeetleReplicaAddressPort))
     }
+}
+
+fun serviceModule(
+    clusterId: Long,
+    replicaAddress: String
+) = module {
+    single {
+        Client(
+            UInt128.asBytes(clusterId),
+            arrayOf(replicaAddress)
+        )
+    }
+    single { AccountingService(get()) }
+    single { FeeService(get()) }
 }

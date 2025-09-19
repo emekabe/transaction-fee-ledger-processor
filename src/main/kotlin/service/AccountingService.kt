@@ -39,7 +39,6 @@ class AccountingService(
         return accountId
     }
 
-
     fun transfer(transaction: Transaction, amount: BigInteger) {
 
         val singleTransfer = TransferBatch(1)

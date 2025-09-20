@@ -1,4 +1,4 @@
-package com.emeka
+package com.emeka.configuration
 
 import com.fasterxml.jackson.databind.*
 import io.ktor.serialization.jackson.*

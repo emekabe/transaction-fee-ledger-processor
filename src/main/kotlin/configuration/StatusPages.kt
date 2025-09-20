@@ -1,4 +1,4 @@
-package com.emeka
+package com.emeka.configuration
 
 import io.ktor.http.*
 import io.ktor.server.application.*

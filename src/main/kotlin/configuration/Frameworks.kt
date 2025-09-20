@@ -1,4 +1,4 @@
-package com.emeka
+package com.emeka.configuration
 
 import com.emeka.service.AccountingService
 import com.emeka.service.FeeService

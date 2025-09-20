@@ -1,5 +1,6 @@
 package com.emeka.transaction
 
+import com.emeka.constants.FEE_TRANSFER_CODE
 import com.emeka.enums.AccountType
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -15,6 +16,10 @@ class UtilityBillPaymentTransaction : Transaction {
 
     override fun getDescription(): String {
         return "Standard fee rate of 0.2%"
+    }
+
+    override fun getTransferCode(): Int {
+        return FEE_TRANSFER_CODE
     }
 
     override fun getDebitAccount(): AccountType {

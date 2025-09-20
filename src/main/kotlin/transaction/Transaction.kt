@@ -12,6 +12,8 @@ interface Transaction {
 
     fun getDescription(): String
 
+    fun getTransferCode(): Int
+
     fun getDebitAccount(): AccountType
 
     fun getCreditAccount(): AccountType

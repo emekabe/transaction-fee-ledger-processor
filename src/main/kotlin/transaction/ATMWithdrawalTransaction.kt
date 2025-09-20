@@ -1,5 +1,6 @@
 package com.emeka.transaction
 
+import com.emeka.constants.FEE_TRANSFER_CODE
 import com.emeka.enums.AccountType
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -10,12 +11,16 @@ class ATMWithdrawalTransaction: Transaction {
     }
 
     override fun calculateFee(amount: BigInteger): BigInteger {
-        // Standard Rate
+        // Constant Rate
         return BigInteger.valueOf(10)
     }
 
     override fun getDescription(): String {
         return "Fixed fee of USD 10"
+    }
+
+    override fun getTransferCode(): Int {
+        return FEE_TRANSFER_CODE
     }
 
     override fun getDebitAccount(): AccountType {

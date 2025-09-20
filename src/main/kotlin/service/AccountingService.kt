@@ -49,7 +49,7 @@ class AccountingService(
         singleTransfer.amount = amount
         singleTransfer.ledger = transaction.getDebitAccount().ledger
         singleTransfer.setUserData128(SYSTEM_USER_DATA)
-        singleTransfer.code = 1
+        singleTransfer.code = transaction.getTransferCode()
 
         val result = client.createTransfers(singleTransfer)
         if (result.length > 0) {

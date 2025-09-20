@@ -2,7 +2,7 @@ package com.emeka.constants
 
 // Ledgers
 const val GENERAL_LEDGER = 1;
-const val USD_FIAT_LEDGER = 1;
+const val USD_FIAT_LEDGER = 2;
 
 // Account ids
 const val MOBILE_TOP_UP_FEE_ID = 100001L;

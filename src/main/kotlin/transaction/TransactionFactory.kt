@@ -1,15 +1,17 @@
 package com.emeka.transaction
 
+import com.emeka.constants.*
+
 fun getTransaction(type: String): Transaction {
-    if (type.equals("Mobile Top Up", ignoreCase = true)) {
+    if (type.equals(MOBILE_TOP_UP, ignoreCase = true)) {
         return MobileTopUpTransaction()
     }
 
-    if (type.equals("Utility Bill Payment", ignoreCase = true)) {
+    if (type.equals(UTILITY_BILL_PAYMENT, ignoreCase = true)) {
         return UtilityBillPaymentTransaction()
     }
 
-    if (type.equals("ATM Withdrawal", ignoreCase = true)) {
+    if (type.equals(ATM_WITHDRAWAL, ignoreCase = true)) {
         return ATMWithdrawalTransaction()
     }
 

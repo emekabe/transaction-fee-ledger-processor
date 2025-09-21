@@ -5,6 +5,7 @@ val logback_version: String by project
 val tigerbeetle_version: String by project
 val restate_version: String by project
 val kx_serialization_version: String by project
+val mockk_version: String by project
 
 plugins {
     kotlin("jvm") version "2.2.20"
@@ -43,6 +44,7 @@ dependencies {
 
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+    testImplementation("io.mockk:mockk:$mockk_version")
 }
 
 

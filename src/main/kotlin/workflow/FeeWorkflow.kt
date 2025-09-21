@@ -54,4 +54,5 @@ fun main() {
 
     val endTime = System.currentTimeMillis()
     println("Started FeeWorkflow Restate Server in ${(endTime - startTime) / 1000} seconds")
+    println("Responding at http://localhost:8081")
 }

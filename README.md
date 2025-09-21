@@ -73,7 +73,7 @@ curl --location 'localhost:8082/transaction/fee' \
     "asset_type": "FIAT",
     "type": "Mobile Top Up",
     "state": "SETTLED - PENDING FEE",
-    "created_at": "2023-08-30 15:42:17.610059"
+    "created_at": "2025-08-30 15:42:17.610059"
 }'
 ```
 
@@ -148,7 +148,7 @@ curl --location 'localhost:8080/FeeWorkflow/chargeFee' \
     "asset_type": "FIAT",
     "type": "Mobile Top Up",
     "state": "SETTLED - PENDING FEE",
-    "created_at": "2023-08-30 15:42:17.610059"
+    "created_at": "2025-08-30 15:42:17.610059"
 }'
 ```
 

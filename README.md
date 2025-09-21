@@ -92,7 +92,7 @@ curl --location 'localhost:8082/transaction/fee' \
 
 ## Reading Recorded Entries in TigerBeetle
 
-Assuming the transaction posts a journal entry on a credit account `100000` and debit account `100001`, Run this command in your tigerbeetle CLI to get the transfers on account 10000. Check [here](https://docs.tigerbeetle.com/start/) on how to get to the CLI.
+Assuming the transaction posts a journal entry on a debit account `100000` and credit account `100001`, Run this command in your tigerbeetle CLI to get the transfers on account 10000. Check [here](https://docs.tigerbeetle.com/start/) on how to get to the CLI.
 
 ```
 get_account_transfers account_id=100000 flags=debits|credits;

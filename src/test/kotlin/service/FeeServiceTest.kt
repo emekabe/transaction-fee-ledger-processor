@@ -26,7 +26,7 @@ class FeeServiceTest {
     }
 
     @Test
-    fun `chargeFee should calculate fee and call accountingService when Mobile Top Up Transaction Type is Passes`() {
+    fun `chargeFee should calculate fee and call accountingService when Mobile Top Up Transaction Type is Sent`() {
         val request = TransactionRequest(
             transactionId = "txn_001",
             amount = BigInteger.valueOf(2_000_000),
@@ -54,7 +54,7 @@ class FeeServiceTest {
         verify(exactly = 1) { accountingService.transfer(any(), any()) }
     }
     @Test
-    fun `chargeFee should calculate fee and call accountingService when Utility Bill Payment Transaction Type is Passes`() {
+    fun `chargeFee should calculate fee and call accountingService when Utility Bill Payment Transaction Type is Sent`() {
         val request = TransactionRequest(
             transactionId = "txn_002",
             amount = BigInteger.valueOf(3_000_000),
@@ -83,7 +83,7 @@ class FeeServiceTest {
     }
 
     @Test
-    fun `chargeFee should calculate fee and call accountingService when ATM Withdrawal Transaction Type is Passes`() {
+    fun `chargeFee should calculate fee and call accountingService when ATM Withdrawal Transaction Type is Sent`() {
         val request = TransactionRequest(
             transactionId = "txn_003",
             amount = BigInteger.valueOf(4_000_000),
@@ -113,9 +113,34 @@ class FeeServiceTest {
 
 
     @Test
-    fun `chargeFee should throw exception when Invalid Transaction Type is Passes`() {
+    fun `chargeFee should throw exception when Invalid State  is Sent`() {
         val request = TransactionRequest(
             transactionId = "txn_004",
+            amount = BigInteger.valueOf(5_000_000),
+            asset = "USD",
+            assetType = "FIAT",
+            type = "Mobile Top Up",
+            state = "PROCESSING",
+            createdAt = "2025-08-30 15:42:17.610059"
+        )
+
+        every { accountingService.transfer(any(), any()) } returns Unit
+
+        every { accountingService.transfer(any(), any()) } returns Unit
+
+        val exception = assertFailsWith<IllegalArgumentException> {
+            feeService.chargeFee(request)
+        }
+
+        assert(exception.message!!.contains("Transaction is not in the right state for fee charge"))
+
+        verify(exactly = 0) { accountingService.transfer(any(), any()) }
+    }
+
+    @Test
+    fun `chargeFee should throw exception when Invalid Transaction Type is Sent`() {
+        val request = TransactionRequest(
+            transactionId = "txn_005",
             amount = BigInteger.valueOf(5_000_000),
             asset = "USD",
             assetType = "FIAT",
